@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Be My Valentine 💖</title>
@@ -16,6 +17,12 @@
 
     .container {
       text-align: center;
+    }
+
+    .container img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     h1 {
@@ -40,14 +47,38 @@
 
     #noBtn {
       background-color: #cccccc;
+      transform-origin: center;
+    }
+
+    .valentine-img {
+      width: 250px;
+      max-width: 80%;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      animation: fadeIn 1s ease-in;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
   </style>
 </head>
 
 <body>
   <div class="container">
+    <h1>With you 💕</h1>
+    <img src="photo.jpeg" alt="A special picture 💖" class="valentine-img">
+    <img src="photo1.jpeg" alt="A special picture 💖" class="valentine-img">
     <h1>Will you be my Valentine? 💕</h1>
-
     <button id="yesBtn" onclick="yesClicked()">Yes 💖</button>
     <button id="noBtn" onclick="noClicked()">No 😅</button>
   </div>
@@ -88,4 +119,5 @@
     }
   </script>
 </body>
+
 </html>
