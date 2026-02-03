@@ -70,6 +70,97 @@
         transform: scale(1);
       }
     }
+
+    .letter-container {
+      text-align: center;
+      position: relative;
+    }
+
+    .tap-text {
+      margin-top: 15px;
+      font-size: 1.2rem;
+      color: #b03060;
+    }
+
+    .envelope {
+      width: 220px;
+      height: 140px;
+      position: relative;
+      margin: 40px auto 10px;
+      cursor: pointer;
+    }
+
+    .envelope-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #ffc0cb;
+      border-radius: 10px;
+    }
+
+    .envelope-front {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #ffb6c1;
+      clip-path: polygon(0 0, 100% 0, 50% 60%);
+      transform-origin: top;
+      transition: transform 0.8s ease;
+    }
+
+    .envelope-heart {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2rem;
+      z-index: 2;
+    }
+
+    .letter {
+      width: 280px;
+      background: #fff;
+      margin: -60px auto 0;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      display: none;
+      animation: slideUp 1s ease forwards;
+    }
+
+    .letter h2 {
+      color: #ff4d6d;
+    }
+
+    .signature {
+      margin-top: 20px;
+      font-style: italic;
+      color: #ff4d6d;
+    }
+
+    .open .envelope-front {
+      transform: rotateX(180deg);
+    }
+
+    .open+.tap-text {
+      display: none;
+    }
+
+    .open~.letter {
+      display: block;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
 
@@ -85,13 +176,19 @@
   </div>
 
   <script>
+
+    function openEnvelope() {
+      const envelope = document.querySelector(".envelope");
+      envelope.classList.add("open");
+    }
+
     let noClickCount = 0;
 
     const cuteMemes = [
-      "https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif",
-      "https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif",
-      "https://media.giphy.com/media/l2QDM9Jnim1YVILXa/giphy.gif",
-      "https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif"
+      "https://tse1.mm.bing.net/th/id/OIP.22tapj0qyBbzIkSJVkNEowHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
+      "https://tse4.mm.bing.net/th/id/OIP.w8EtmKJ2WQU2PCM0DzPz6QHaGY?rs=1&pid=ImgDetMain&o=7&rm=3",
+      "https://tse1.mm.bing.net/th/id/OIP.6FSe2bTNLCoszsV8Z5GPUgHaFq?rs=1&pid=ImgDetMain&o=7&rm=3",
+      "https://img.freepik.com/premium-vector/sad-cartoon-rabbit-illustration-emotional-animal-character-design_1120558-31516.jpg?w=2000"
     ];
 
     const messages = [
@@ -100,6 +197,7 @@
       "Think again!",
       "You might regret this 😢",
       "Last chance!",
+      "Wait!",
       "Ok but I'm sad now 💔"
     ];
 
@@ -123,15 +221,29 @@
 
     function yesClicked() {
       document.body.innerHTML = `
-    <div style="text-align:center;">
-      <h1>Yay!!! 💖🥰</h1>
-      <p style="font-size:1.5rem;">
-        You just made me very happy ❤️<br><br>
-        Screenshot this and send it to me? 📸💌
-      </p>
+    <div class="letter-container">
+      <div class="envelope" onclick="openEnvelope()">
+        <div class="envelope-back"></div>
+        <div class="envelope-front"></div>
+        <div class="envelope-heart">💖</div>
+      </div>
+
+      <p class="tap-text">Tap the envelope 💌</p>
+
+      <div class="letter">
+        <h2>To Sasha Lorraine Orendez Santero 💕</h2>
+        <p>
+          Hi! You know how I do lol, this is for you, did an IT work for this and made it special because you are special to me.
+My once enigma from the moment I met you, now to someone I wish to pursue, you make things feel different, and honestly?
+I don't know where this goes yet, but fights, misunderstandings, kidding aside, I'd love to find out with you. 💖<br><br>
+          Will you be my Valentine? 🌹
+        </p>
+        <p class="signature">— Yours 💌</p>
+      </div>
     </div>
   `;
     }
+
 
   </script>
 </body>
