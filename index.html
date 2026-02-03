@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Be My Valentine 💖</title>
+
+  <style>
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ffe6eb;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 10px;
+      transition: transform 0.2s ease;
+    }
+
+    #yesBtn {
+      background-color: #ff4d6d;
+      color: white;
+    }
+
+    #noBtn {
+      background-color: #cccccc;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Will you be my Valentine? 💕</h1>
+
+    <button id="yesBtn" onclick="yesClicked()">Yes 💖</button>
+    <button id="noBtn" onclick="noClicked()">No 😅</button>
+  </div>
+
+  <script>
+    let noClickCount = 0;
+
+    const messages = [
+      "Are you sure?",
+      "Really sure??",
+      "Think again!",
+      "You might regret this 😢",
+      "Last chance!",
+      "Ok but I'm sad now 💔"
+    ];
+
+    function noClicked() {
+      const noBtn = document.getElementById("noBtn");
+
+      noClickCount++;
+
+      // Increase size
+      const scale = 1 + noClickCount * 0.15;
+      noBtn.style.transform = `scale(${scale})`;
+
+      // Change text
+      const msgIndex = Math.min(noClickCount - 1, messages.length - 1);
+      noBtn.innerText = messages[msgIndex];
+    }
+
+    function yesClicked() {
+      document.body.innerHTML = `
+        <div style="text-align:center;">
+          <h1>Yay!!! 💖🥰</h1>
+          <p style="font-size:1.5rem;">You just made me very happy ❤️</p>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
