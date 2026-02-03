@@ -78,6 +78,7 @@
     <h1>With you 💕</h1>
     <img src="photo.jpeg" alt="A special picture 💖" class="valentine-img">
     <img src="photo1.jpeg" alt="A special picture 💖" class="valentine-img">
+    <img id="noMeme" src="" style="display:none;" class="valentine-img">
     <h1>Will you be my Valentine? 💕</h1>
     <button id="yesBtn" onclick="yesClicked()">Yes 💖</button>
     <button id="noBtn" onclick="noClicked()">No 😅</button>
@@ -85,6 +86,13 @@
 
   <script>
     let noClickCount = 0;
+
+    const cuteMemes = [
+      "https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif",
+      "https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif",
+      "https://media.giphy.com/media/l2QDM9Jnim1YVILXa/giphy.gif",
+      "https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif"
+    ];
 
     const messages = [
       "Are you sure?",
@@ -97,26 +105,34 @@
 
     function noClicked() {
       const noBtn = document.getElementById("noBtn");
+      const meme = document.getElementById("noMeme");
 
       noClickCount++;
 
-      // Increase size
       const scale = 1 + noClickCount * 0.15;
       noBtn.style.transform = `scale(${scale})`;
 
-      // Change text
       const msgIndex = Math.min(noClickCount - 1, messages.length - 1);
       noBtn.innerText = messages[msgIndex];
+
+      // Show cute meme
+      meme.src = cuteMemes[(noClickCount - 1) % cuteMemes.length];
+      meme.style.display = "block";
     }
+
 
     function yesClicked() {
       document.body.innerHTML = `
-        <div style="text-align:center;">
-          <h1>Yay!!! 💖🥰</h1>
-          <p style="font-size:1.5rem;">You just made me very happy ❤️</p>
-        </div>
-      `;
+    <div style="text-align:center;">
+      <h1>Yay!!! 💖🥰</h1>
+      <p style="font-size:1.5rem;">
+        You just made me very happy ❤️<br><br>
+        Screenshot this and send it to me? 📸💌
+      </p>
+    </div>
+  `;
     }
+
   </script>
 </body>
 
